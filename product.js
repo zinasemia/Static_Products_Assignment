@@ -6,9 +6,6 @@ fetch(url)
     .then((res) => res.json())
     .then((data) => showProduct(data));
 
-function loop(data) {
-    data.forEach(showProduct)
-}
 
 function showProduct(product) {
     console.log(product);
@@ -22,10 +19,32 @@ function showProduct(product) {
     document.querySelector("h3").alt = product.productdisplayname;
     document.querySelector(".modelname").textContent = "Model name: " + product.productdisplayname;
     document.querySelector(".brandbio").textContent =product.brandbio;
+    document.querySelector(".season").textContent = "Season: "+product.season;
+    document.querySelector(".color").textContent = "Color: "+product.basecolour;
+    document.querySelector(".sub").textContent = product.subcategory;
 
 
 
+    document.querySelector(".price").textContent = product.price+"- dkk";
+    document.querySelector(".discounted").textContent = "-"+product.discount + "%";
 
 
+   
 
+    const discountamount = product.discount / 100 * product.price;
+    const newpricenoround = product.price - discountamount;
+    const newprice = Math.round(newpricenoround);
+    document.querySelector(".nprice").textContent = `${"New Price: "+ newprice}`;
+
+    if (discountamount) {
+        document.querySelector(".nprice").classList.remove("hidden");
+
+    }
+
+    if (product.discount) {
+        document.querySelector(".discounted").classList.remove("hidden");
+    }
+    if (product.soldout) {
+        copy.querySelector("article").classList.add("soldout");
+    }
 }
