@@ -20,6 +20,9 @@ function showProduct(product) {
     document.querySelector("img.productimg").src = `https://kea-alt-del.dk/t7/images/webp/640/${product.id}.webp`;
     document.querySelector("img.productimg").alt = product.productdisplayname;
     document.querySelector("h3").alt = product.productdisplayname;
+    document.querySelector(".modelname").textContent = "Model name: " + product.productdisplayname;
+    document.querySelector(".brandbio").textContent =product.brandbio;
+
 
 
 
