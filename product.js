@@ -13,20 +13,15 @@ function loop(data) {
 function showProduct(product) {
     console.log(product);
 
-    const template = document.querySelector("#producttemplate").content;
-    const copy = template.cloneNode(true);
-    copy.querySelector(".breadcrumb .brand").textContent = product.brandname;
-    copy.querySelector(".breadcrumb .productname").textContent = product.productdisplayname;
+
+    document.querySelector(".breadcrumb .brand").textContent = product.brandname;
+    document.querySelector(".breadcrumb .productname").textContent = product.productdisplayname;
     //img
-    copy.querySelector("img.productimg").src = `https://kea-alt-del.dk/t7/images/webp/640/${product.id}.webp`;
-    copy.querySelector("img.productimg").alt = product.productdisplayname;
-    copy.querySelector("h3").alt = product.productdisplayname;
+    document.querySelector("img.productimg").src = `https://kea-alt-del.dk/t7/images/webp/640/${product.id}.webp`;
+    document.querySelector("img.productimg").alt = product.productdisplayname;
+    document.querySelector("h3").alt = product.productdisplayname;
 
 
-
-
-    const parent = document.querySelector(".specialmain");
-    parent.appendChild(copy);
 
 
 
