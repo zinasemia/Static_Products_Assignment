@@ -1,3 +1,3 @@
 hello!
-there are is one thing i could not figure out
+there is one thing i could not figure out
 1. in project.js: how can i hide the class .discounted if the discount amount equals null, i tried working on the if sentences but could not figure it out.
