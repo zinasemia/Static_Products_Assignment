@@ -28,6 +28,6 @@ function showBrand(brand) {
     const copy = template.cloneNode(true);
     copy.querySelector("a").textContent = brand.brandname;
     copy.querySelector("a").href = `productlist.html?brandname=${brand.brandname}`;
-    const parent = document.querySelector(".brand");
+    const parent = document.querySelector(".brand ol");
    parent.appendChild(copy);
 }
