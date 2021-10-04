@@ -1,23 +1,15 @@
-const url = "https://kea-alt-del.dk/t7/api/products/";
-// fetch(url)
-//     .then(function (res) {
-//         return res.json();
-//     })
-//     .then(function (data) {
-//         handleProductList(data);
-//     });
+const urlParams = new URLSearchParams(window.location.search);
+const brandname = urlParams.get("brandname");
 
-// function handleProductList(data) {
-//     console.log(data);
-//     data.forEach(showProduct);
-// }
+document.querySelector("h2").textContent = brandname;
+
+const url = "https://kea-alt-del.dk/t7/api/products/?brandname=" + brandname;
+
+
 
 fetch(url)
     .then((res) => res.json())
     .then((data) => loop(data));
-
-
-
 
 
 function loop(data) {
@@ -34,23 +26,23 @@ function showProduct(product) {
     //change content
     copy.querySelector(".subtle").textContent = `${product.articletype} | ${product.brandname}`;
     copy.querySelector("h4").textContent = `${product.productdisplayname}`;
-    copy.querySelector(".price").textContent = `${"Price: "+product.price}`;
+    copy.querySelector(".price").textContent = `${"Price: "+product.price+" dkk"}`;
     copy.querySelector(".discounted").textContent = `${"-"+product.discount + "%"}`;
-
+    copy.querySelector("img.productimg").src = `https://kea-alt-del.dk/t7/images/webp/640/${product.id}.webp`;
+    copy.querySelector("img.productimg").alt = product.productdisplayname;
     console.log(product);
 
     //discount price
     const discountamount = product.discount / 100 * product.price;
     const newpricenoround = product.price - discountamount;
     const newprice = Math.round(newpricenoround);
-    copy.querySelector(".nprice").textContent = `${"New Price: "+ newprice}`;
+    copy.querySelector(".nprice").textContent = `${"New Price: "+ newprice+" dkk"}`;
     //grab parent
     const parent = document.querySelector("main");
     if (discountamount) {
         copy.querySelector(".nprice").classList.remove("hidden");
-
-    }
-
+    }   
+    
     if (product.discount) {
         copy.querySelector(".discounted").classList.remove("hidden");
     }
@@ -60,21 +52,3 @@ function showProduct(product) {
     //adapt
     parent.appendChild(copy);
 }
-/* <div class="product">
-                <article class="smallProduct">
-
-
-                    <div class="text">
-                        <img src="css/images/indianshirt.webp" alt="Tshirt">
-                        <li>
-                            <h4>Blue T20 Indian Cricket Jersey</h4>
-                        </li>
-                        <li>
-                            <p>Tshirts | Nike<p>
-                        </li>
-                        <li>
-                            <p>DKK 1595,-</p>
-                        </li>
-                        <li><a href="product.html"> Read more</a>
-                        </li>
-                    </div>*/
