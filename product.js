@@ -27,7 +27,10 @@ function showProduct(product) {
 
     document.querySelector(".price").textContent = product.price + " dkk";
     document.querySelector(".discounted").textContent = "-" + product.discount + "%";
-
+    
+ if (!product, discount) {
+        document.querySelector(".discounted").classList.add("hidden")
+    }
 
 
 
